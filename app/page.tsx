@@ -1,15 +1,13 @@
-// import { StoreIntro } from "@/components/store-intro"
-// import { FeaturedArt } from "@/components/featured-art"
-// import { WhyChooseUs } from "@/components/why-choose-us"
-
-import { StoreIntro } from "@/components/StoreIntro";
+import { FeaturedArt } from "@/components/featured-art";
+import { StoreIntro } from "@/components/store-intro";
+import { WhyChooseUs } from "@/components/why-choose-us";
 
 export default function Home() {
   return (
     <main className="min-h-screen flex flex-col">
       <StoreIntro />
-      {/* <FeaturedArt />
-      <WhyChooseUs /> */}
+      <FeaturedArt />
+      {/* <WhyChooseUs /> */}
     </main>
   );
 }
