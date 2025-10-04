@@ -1,6 +1,5 @@
 import Link from "next/link";
-// import { Button } from "@/components/ui/button"
-
+import { Button } from "./ui/button";
 export function StoreIntro() {
   return (
     <section className="px-6 py-20 md:py-32 lg:px-8">
@@ -16,12 +15,12 @@ export function StoreIntro() {
             stories and transform spaces.
           </p>
           <div className="flex flex-wrap gap-4">
-            {/* <Button asChild size="lg">
+            <Button asChild size="lg">
               <Link href="/art">Our Art</Link>
             </Button>
             <Button asChild variant="outline" size="lg">
               <Link href="/about">Our Story</Link>
-            </Button> */}
+            </Button>
           </div>
         </div>
       </div>
