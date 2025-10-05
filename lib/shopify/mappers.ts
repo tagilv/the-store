@@ -1,4 +1,4 @@
-import { Item } from "../data";
+import { Item } from "../types/common";
 import { ShopifyProduct } from "./types";
 
 export function convertShopifyProductToItem(product: ShopifyProduct): Item {
