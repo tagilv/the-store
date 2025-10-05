@@ -12,7 +12,7 @@ export default function AboutPage() {
     <main className="min-h-screen flex flex-col">
       <section className="px-6 py-20 md:py-32 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-start">
             <div>
               <h1 className="font-sans text-4xl md:text-5xl lg:text-6xl font-light tracking-tight mb-6 text-balance">
                 Our Story
@@ -43,7 +43,7 @@ export default function AboutPage() {
             </div>
             <div className="relative aspect-[4/5] bg-muted rounded-sm overflow-hidden">
               <Image
-                src="/artist-in-studio-working-on-painting.jpg"
+                src="/artist.png"
                 alt="Art gallery space with curated collection"
                 fill
                 priority
