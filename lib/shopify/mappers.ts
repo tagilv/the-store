@@ -1,6 +1,7 @@
 import { Item } from "../data";
+import { ShopifyProduct } from "./types";
 
-export function convertShopifyProductToItem(product: any): Item {
+export function convertShopifyProductToItem(product: ShopifyProduct): Item {
   return {
     id: product.id,
     title: product.title,
