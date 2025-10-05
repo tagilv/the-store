@@ -15,9 +15,6 @@ export function StoreIntro() {
             stories and transform spaces.
           </p>
           <div className="flex flex-wrap gap-4">
-            <Button asChild size="lg">
-              <Link href="/art">Our Art</Link>
-            </Button>
             <Button asChild variant="outline" size="lg">
               <Link href="/about">Our Story</Link>
             </Button>

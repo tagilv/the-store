@@ -69,12 +69,6 @@ export function Footer() {
             </div>
           </div>
         </div>
-
-        <div className="mt-12 pt-8 border-t border-border text-center text-sm text-muted-foreground">
-          <p>
-            &copy; {new Date().getFullYear()} De Boerderij. All rights reserved.
-          </p>
-        </div>
       </div>
     </footer>
   );
