@@ -3,13 +3,17 @@ import { StoreIntro } from "@/components/store-intro";
 import { client } from "@/lib/shopify/client";
 import { getCollection } from "@/lib/shopify/queries";
 import { convertShopifyProductToItem } from "@/lib/shopify/mappers";
+import { CollectionResponse } from "@/lib/shopify/types";
 
 export default async function Home() {
   try {
     // Fetch featured art products from Shopify
-    const { data, errors } = await client.request(getCollection, {
-      variables: { handle: "art-collection" },
-    });
+    const { data, errors } = await client.request<CollectionResponse>(
+      getCollection,
+      {
+        variables: { handle: "art-collection" },
+      }
+    );
 
     if (errors) {
       console.error("GraphQL errors:", errors);
@@ -28,7 +32,7 @@ export default async function Home() {
     // Convert Shopify products to your Item interface
     const featuredItems =
       data?.collection?.products?.edges
-        ?.map((edge: any) => convertShopifyProductToItem(edge.node))
+        ?.map((edge) => convertShopifyProductToItem(edge.node))
         .slice(0, 6) || []; // Limit to 6 featured items
 
     return (
