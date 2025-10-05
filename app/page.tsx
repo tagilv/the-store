@@ -2,6 +2,8 @@ import { FeaturedArt } from "@/components/featured-art";
 import { StoreIntro } from "@/components/store-intro";
 import { getFeaturedArt } from "@/lib/shopify/api";
 
+export const revalidate = 43200;
+
 export default async function Home() {
   const { data: featuredItems, error } = await getFeaturedArt();
 

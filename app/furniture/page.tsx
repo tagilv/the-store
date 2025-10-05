@@ -1,9 +1,5 @@
 import { ItemGrid } from "@/components/item-grid";
-import { client } from "@/lib/shopify/client";
-import { getCollection } from "@/lib/shopify/queries";
-import { convertShopifyProductToItem } from "@/lib/shopify/mappers";
 import { Metadata } from "next";
-import { CollectionResponse } from "@/lib/shopify/types";
 import { getFurnitureCollection } from "@/lib/shopify/api";
 
 export const metadata: Metadata = {
@@ -12,8 +8,14 @@ export const metadata: Metadata = {
     "Discover our curated selection of vintage and contemporary furniture pieces",
 };
 
+export const revalidate = 43200;
+
 export default async function FurniturePage() {
   const { data: furnitureItems, error } = await getFurnitureCollection();
+
+  if (error) {
+    return <div>Error loading furniture collection</div>;
+  }
 
   return (
     <main className="min-h-screen flex flex-col">

@@ -8,6 +8,8 @@ export const metadata: Metadata = {
     "Browse our curated collection of fine art from independent artists",
 };
 
+export const revalidate = 43200;
+
 export default async function ArtPage() {
   const { data: artItems, error } = await getArtCollection();
 

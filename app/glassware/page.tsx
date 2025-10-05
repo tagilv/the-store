@@ -8,6 +8,8 @@ export const metadata: Metadata = {
     "Explore our collection of fine glassware and decorative glass pieces",
 };
 
+export const revalidate = 21600;
+
 export default async function GlasswarePage() {
   const { data: glasswareItems, error } = await getGlasswareCollection();
 
