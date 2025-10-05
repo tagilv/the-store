@@ -2,8 +2,8 @@
 
 import { useCallback, useState } from "react";
 import Image from "next/image";
-import { Item } from "@/lib/data";
 import { ItemModal } from "./item-modal";
+import { Item } from "@/lib/types/common";
 
 interface ItemGridClientProps {
   items: Item[];

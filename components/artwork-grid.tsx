@@ -1,4 +1,4 @@
-import { getFeaturedItems, getItemsByCategory, Item } from "@/lib/data";
+import { Item } from "@/lib/types/common";
 import { ArtworkGridClient } from "./artwork-grid-client";
 
 interface ArtworkGridProps {
@@ -7,9 +7,9 @@ interface ArtworkGridProps {
 }
 
 export function ArtworkGrid({ items, featured = false }: ArtworkGridProps) {
-  // If items are provided, use them; otherwise fetch from data
-  const artworks =
-    items || (featured ? getFeaturedItems(6) : getItemsByCategory("art"));
+  if (!items || items.length === 0) {
+    return null;
+  }
 
-  return <ArtworkGridClient artworks={artworks} featured={featured} />;
+  return <ArtworkGridClient artworks={items} featured={featured} />;
 }

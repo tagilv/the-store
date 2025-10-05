@@ -1,8 +1,8 @@
-import { Item } from "@/lib/data";
+import { Item } from "@/lib/types/common";
 import { ArtworkGrid } from "./artwork-grid";
 
 interface FeaturedArtProps {
-  items: Item[];
+  items: Item[] | null;
 }
 
 export function FeaturedArt({ items }: FeaturedArtProps) {

@@ -4,8 +4,7 @@ import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useCallback, useEffect } from "react";
-import { Item } from "@/lib/data";
-
+import { Item } from "@/lib/types/common";
 interface ItemModalProps {
   item: Item;
   onClose: () => void;

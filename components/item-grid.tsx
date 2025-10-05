@@ -1,4 +1,4 @@
-import { Item } from "@/lib/data";
+import { Item } from "@/lib/types/common";
 import { ItemGridClient } from "./item-grid-client";
 
 interface ItemGridProps {

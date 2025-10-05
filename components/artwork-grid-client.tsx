@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Item } from "@/lib/data";
 import { ArtworkModal } from "./artwork-modal";
+import { Item } from "@/lib/types/common";
 
 interface ArtworkGridClientProps {
   artworks: Item[];

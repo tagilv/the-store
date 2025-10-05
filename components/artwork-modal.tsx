@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import Image from "next/image";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Item } from "@/lib/data";
+import { Item } from "@/lib/types/common";
 
 interface ArtworkModalProps {
   artwork: Item;
