@@ -55,7 +55,7 @@ export function ItemModal({ item, onClose }: ItemModalProps) {
       aria-labelledby="modal-title"
     >
       <div
-        className="relative max-w-5xl w-full bg-background rounded-lg overflow-hidden"
+        className="relative max-w-5xl w-full bg-background rounded-lg overflow-hidden max-h-[90vh] overflow-y-auto"
         onClick={handleContentClick}
       >
         <Button
@@ -68,8 +68,8 @@ export function ItemModal({ item, onClose }: ItemModalProps) {
           <X className="h-5 w-5" />
         </Button>
 
-        <div className="grid md:grid-cols-2 gap-8 p-8">
-          <div className="aspect-[3/4] bg-muted rounded-sm overflow-hidden">
+        <div className="grid md:grid-cols-2 gap-8 p-4 md:p-8">
+          <div className="relative w-full aspect-[3/4] bg-muted rounded-sm overflow-hidden">
             <Image
               src={item.image || "/placeholder.svg"}
               alt={item.title}
@@ -84,7 +84,7 @@ export function ItemModal({ item, onClose }: ItemModalProps) {
             <div>
               <h2
                 id="modal-title"
-                className="font-sans text-3xl font-light tracking-tight mb-2 text-balance"
+                className="font-sans text-2xl md:text-3xl font-light tracking-tight mb-2 text-balance"
               >
                 {item.title}
               </h2>

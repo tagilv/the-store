@@ -16,10 +16,12 @@ export function convertShopifyProductToItem(product: any): Item {
           "mixed media",
           "glass",
           "crystal",
+          "glassware",
+          "vase",
           "wood",
           "metal",
         ].includes(tag.toLowerCase())
-      ) || "Mixed Media",
+      ) || "Other",
     year: new Date().getFullYear().toString(),
     dimensions: "Various",
     description: product.description,
