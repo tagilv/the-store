@@ -1,4 +1,5 @@
-export const GET_PRODUCTS_QUERY = `
+// Get all products query
+export const getProducts = `
   query getProducts($first: Int!) {
     products(first: $first) {
       edges {
@@ -8,6 +9,14 @@ export const GET_PRODUCTS_QUERY = `
           description
           handle
           tags
+          collections(first: 1) {
+            edges {
+              node {
+                title
+                handle
+              }
+            }
+          }
           priceRange {
             minVariantPrice {
               amount
@@ -28,13 +37,50 @@ export const GET_PRODUCTS_QUERY = `
   }
 `;
 
-export const GET_SHOP_QUERY = `
-  query getShop {
-    shop {
-      name
-      primaryDomain {
-        host
+// Get single collection by handle
+export const getCollection = `
+  query getCollection($handle: String!) {
+    collection(handle: $handle) {
+      id
+      title
+      handle
+      description
+      image {
         url
+        altText
+      }
+      products(first: 20) {
+        edges {
+          node {
+            id
+            title
+            description
+            handle
+            tags
+            collections(first: 1) {
+              edges {
+                node {
+                  title
+                  handle
+                }
+              }
+            }
+            priceRange {
+              minVariantPrice {
+                amount
+                currencyCode
+              }
+            }
+            images(first: 1) {
+              edges {
+                node {
+                  url
+                  altText
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

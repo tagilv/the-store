@@ -1,5 +1,5 @@
 export interface Item {
-  id: number;
+  id: string;
   title: string;
   category: "art" | "glassware" | "furniture";
   medium: string;
@@ -11,9 +11,8 @@ export interface Item {
 }
 
 export const items: Item[] = [
-  // Art
   {
-    id: 1,
+    id: "1",
     title: "Abstract Horizons",
     category: "art",
     medium: "Acrylic on Canvas",
@@ -24,7 +23,7 @@ export const items: Item[] = [
     image: "/abstract-colorful-painting-horizon.jpg",
   },
   {
-    id: 2,
+    id: "2",
     title: "Urban Reflections",
     category: "art",
     medium: "Mixed Media",
@@ -35,7 +34,7 @@ export const items: Item[] = [
     image: "/urban-abstract-art-cityscape.jpg",
   },
   {
-    id: 3,
+    id: "3",
     title: "Ethereal Dreams",
     category: "art",
     medium: "Oil on Canvas",
@@ -46,7 +45,7 @@ export const items: Item[] = [
     image: "/ethereal-soft-abstract-painting.jpg",
   },
   {
-    id: 4,
+    id: "4",
     title: "Geometric Harmony",
     category: "art",
     medium: "Acrylic on Canvas",
@@ -57,7 +56,7 @@ export const items: Item[] = [
     image: "/geometric-abstract-art-colorful.jpg",
   },
   {
-    id: 5,
+    id: "5",
     title: "Nature's Whisper",
     category: "art",
     medium: "Watercolor on Paper",
@@ -68,7 +67,7 @@ export const items: Item[] = [
     image: "/watercolor-nature-abstract-organic.jpg",
   },
   {
-    id: 6,
+    id: "6",
     title: "Midnight Reverie",
     category: "art",
     medium: "Oil on Canvas",
@@ -78,9 +77,8 @@ export const items: Item[] = [
       "A moody, dramatic piece exploring depth and shadow in abstract form.",
     image: "/dark-moody-abstract-painting-dramatic.jpg",
   },
-  // Glassware
   {
-    id: 7,
+    id: "7",
     title: "Venetian Vase Collection",
     category: "glassware",
     medium: "Hand-blown Glass",
@@ -91,7 +89,7 @@ export const items: Item[] = [
     image: "/elegant-venetian-glass-vases-colorful.jpg",
   },
   {
-    id: 8,
+    id: "8",
     title: "Crystal Decanter Set",
     category: "glassware",
     medium: "Cut Crystal",
@@ -102,7 +100,7 @@ export const items: Item[] = [
     image: "/luxury-crystal-decanter-set-elegant.jpg",
   },
   {
-    id: 9,
+    id: "9",
     title: "Art Deco Glass Bowls",
     category: "glassware",
     medium: "Colored Glass",
@@ -112,9 +110,8 @@ export const items: Item[] = [
       "Stunning Art Deco inspired glass bowls with geometric patterns.",
     image: "/art-deco-glass-bowls-geometric-colorful.jpg",
   },
-  // Furniture
   {
-    id: 10,
+    id: "10",
     title: "Mid-Century Lounge Chair",
     category: "furniture",
     medium: "Walnut & Leather",
@@ -125,7 +122,7 @@ export const items: Item[] = [
     image: "/mid-century-modern-lounge-chair-walnut-leather.jpg",
   },
   {
-    id: 11,
+    id: "11",
     title: "Danish Teak Sideboard",
     category: "furniture",
     medium: "Teak Wood",
@@ -136,7 +133,7 @@ export const items: Item[] = [
     image: "/danish-teak-sideboard-vintage-modern.jpg",
   },
   {
-    id: 12,
+    id: "12",
     title: "Brass & Marble Console",
     category: "furniture",
     medium: "Brass & Marble",
@@ -148,7 +145,6 @@ export const items: Item[] = [
   },
 ];
 
-// Helper functions for filtering items by category
 export function getItemsByCategory(category: Item["category"]): Item[] {
   return items.filter((item) => item.category === category);
 }
