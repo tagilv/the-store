@@ -1,18 +1,25 @@
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
+import { headers } from "next/headers";
 import { ShopifyCollection } from "@/lib/shopify/types";
 
-export async function POST(request: NextRequest) {
-  const body = await request.json();
+export async function POST(req: NextRequest): Promise<NextResponse> {
+  const topic = (await headers()).get("x-shopify-topic") || "unknown";
 
-  if (body.topic === "products/create" || body.topic === "products/update") {
-    // Get the product's collection from the webhook data
+  const productWebhooks = ["products/create", "products/update"];
+
+  const isProductUpdate = productWebhooks.includes(topic);
+
+  if (isProductUpdate) {
+    // Always revalidate home page
+    revalidatePath("/");
+
+    // Get product data from request body to check collections
+    const body = await req.json();
     const product = body.product;
     const collections = product?.collections || [];
 
-    // Revalidate based on which collections are affected
-    revalidatePath("/");
-
+    // Revalidate specific collection pages based on product's collections
     collections.forEach((collection: ShopifyCollection) => {
       switch (collection.handle) {
         case "art-collection":
@@ -26,9 +33,7 @@ export async function POST(request: NextRequest) {
           break;
       }
     });
-
-    return Response.json({ revalidated: true });
   }
 
-  return Response.json({ revalidated: false });
+  return NextResponse.json({ status: 200, revalidated: true });
 }
