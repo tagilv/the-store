@@ -11,8 +11,6 @@ export const metadata: Metadata = {
 // revalidate every 1 hours
 export const revalidate = 3600;
 
-export const runtime = "edge";
-
 export default async function ArtPage() {
   const { data: artItems, error } = await getArtCollection();
 

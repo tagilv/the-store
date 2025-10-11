@@ -11,8 +11,6 @@ export const metadata: Metadata = {
 // revalidate every 1 hour
 export const revalidate = 3600;
 
-export const runtime = "edge";
-
 export default async function FurniturePage() {
   const { data: furnitureItems, error } = await getFurnitureCollection();
 

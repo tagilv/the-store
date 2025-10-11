@@ -11,8 +11,6 @@ export const metadata: Metadata = {
 // revalidate every 30 min
 export const revalidate = 1800;
 
-export const runtime = "edge";
-
 export default async function GlasswarePage() {
   const { data: glasswareItems, error } = await getGlasswareCollection();
 
