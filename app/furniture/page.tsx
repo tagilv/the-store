@@ -8,7 +8,10 @@ export const metadata: Metadata = {
     "Discover our curated selection of vintage and contemporary furniture pieces",
 };
 
-export const revalidate = 43200;
+// revalidate every 1 hour
+export const revalidate = 3600;
+
+export const runtime = "edge";
 
 export default async function FurniturePage() {
   const { data: furnitureItems, error } = await getFurnitureCollection();

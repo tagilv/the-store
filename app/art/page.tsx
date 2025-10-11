@@ -8,7 +8,10 @@ export const metadata: Metadata = {
     "Browse our curated collection of fine art from independent artists",
 };
 
-export const revalidate = 43200;
+// revalidate every 1 hours
+export const revalidate = 3600;
+
+export const runtime = "edge";
 
 export default async function ArtPage() {
   const { data: artItems, error } = await getArtCollection();

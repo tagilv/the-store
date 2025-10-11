@@ -6,6 +6,8 @@ export const metadata: Metadata = {
   description: "Get in touch to discuss art inquiries, purchases, or questions",
 };
 
+export const runtime = "edge";
+
 export default function ContactPage() {
   return (
     <div className="min-h-screen flex flex-col">

@@ -8,7 +8,10 @@ export const metadata: Metadata = {
     "Explore our collection of fine glassware and decorative glass pieces",
 };
 
-export const revalidate = 21600;
+// revalidate every 30 min
+export const revalidate = 1800;
+
+export const runtime = "edge";
 
 export default async function GlasswarePage() {
   const { data: glasswareItems, error } = await getGlasswareCollection();
