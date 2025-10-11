@@ -7,8 +7,6 @@ export const metadata: Metadata = {
     "Learn about our independent art gallery and our passion for curating exceptional pieces",
 };
 
-export const runtime = "edge";
-
 export default function AboutPage() {
   return (
     <main className="min-h-screen flex flex-col">
