@@ -8,11 +8,13 @@ import { Item } from "@/lib/types/common";
 interface ItemGridClientProps {
   items: Item[];
   featured?: boolean;
+  type?: "artwork" | "item";
 }
 
 export function ItemGridClient({
   items,
   featured = false,
+  type = "item",
 }: ItemGridClientProps) {
   const [selectedItem, setSelectedItem] = useState<Item | null>(null);
 
@@ -39,11 +41,16 @@ export function ItemGridClient({
             >
               <Image
                 src={item.image || "/placeholder.svg"}
-                alt={`${item.title} - ${item.medium} from ${item.year}`}
+                alt={
+                  type === "artwork"
+                    ? `${item.title} - ${item.medium} artwork from ${item.year}`
+                    : `${item.title} - ${item.medium} from ${item.year}`
+                }
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
                 priority={featured && index < 3}
+                loading={featured && index < 3 ? "eager" : "lazy"}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <div className="absolute bottom-0 left-0 right-0 p-6 text-white">

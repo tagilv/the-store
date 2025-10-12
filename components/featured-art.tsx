@@ -1,5 +1,5 @@
 import { Item } from "@/lib/types/common";
-import { ArtworkGrid } from "./artwork-grid";
+import { ItemGrid } from "./item-grid";
 
 interface FeaturedArtProps {
   items: Item[] | null;
@@ -21,7 +21,7 @@ export function FeaturedArt({ items }: FeaturedArtProps) {
             Discover our carefully curated selection of featured artworks
           </p>
         </div>
-        <ArtworkGrid items={items} />
+        <ItemGrid items={items} featured={true} type="artwork" />
       </div>
     </section>
   );
