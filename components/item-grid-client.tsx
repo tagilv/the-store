@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { ItemModal } from "./item-modal";
 import { Item } from "@/lib/types/common";
@@ -12,13 +12,13 @@ interface ItemGridClientProps {
 export function ItemGridClient({ items }: ItemGridClientProps) {
   const [selectedItem, setSelectedItem] = useState<Item | null>(null);
 
-  const handleItemClick = useCallback((item: Item) => {
+  const handleItemClick = (item: Item) => {
     setSelectedItem(item);
-  }, []);
+  };
 
-  const handleCloseModal = useCallback(() => {
+  const handleCloseModal = () => {
     setSelectedItem(null);
-  }, []);
+  };
 
   return (
     <>

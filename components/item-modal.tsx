@@ -3,7 +3,7 @@
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { useCallback, useEffect } from "react";
+import { useEffect } from "react";
 import { Item } from "@/lib/types/common";
 interface ItemModalProps {
   item: Item;
@@ -11,14 +11,14 @@ interface ItemModalProps {
 }
 
 export function ItemModal({ item, onClose }: ItemModalProps) {
-  const handleClose = useCallback(() => {
+  const handleClose = () => {
     onClose();
-  }, [onClose]);
+  };
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        handleClose();
+        onClose();
       }
     };
 
@@ -30,20 +30,17 @@ export function ItemModal({ item, onClose }: ItemModalProps) {
       document.removeEventListener("keydown", handleEscape);
       document.body.style.overflow = "unset"; // ← Restores scrolling
     };
-  }, [handleClose]);
+  }, [onClose]);
 
-  const handleBackdropClick = useCallback(
-    (e: React.MouseEvent) => {
-      if (e.target === e.currentTarget) {
-        handleClose();
-      }
-    },
-    [handleClose]
-  );
+  const handleBackdropClick = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      handleClose();
+    }
+  };
 
-  const handleContentClick = useCallback((e: React.MouseEvent) => {
+  const handleContentClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-  }, []);
+  };
 
   return (
     <div
