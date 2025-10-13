@@ -21,9 +21,9 @@ export async function getFeaturedArt(): Promise<{
   }
 
   const items =
-    data?.collection?.products?.edges
-      ?.map((edge) => convertShopifyProductToItem(edge.node))
-      .slice(0, 6) || []; // Limit to 6 featured items
+    data?.collection?.products?.edges?.map((edge) =>
+      convertShopifyProductToItem(edge.node)
+    ) || [];
 
   return { data: items, error: null };
 }
