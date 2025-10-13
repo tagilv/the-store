@@ -15,5 +15,6 @@ export function ItemGrid({
   if (!items) {
     return <div>No items available</div>;
   }
+
   return <ItemGridClient items={items} featured={featured} type={type} />;
 }
