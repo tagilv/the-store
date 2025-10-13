@@ -31,7 +31,7 @@ export default async function ArtPage() {
               mixed media works
             </p>
           </div>
-          <ItemGrid items={artItems} type="artwork" />
+          <ItemGrid items={artItems} />
         </div>
       </section>
     </main>

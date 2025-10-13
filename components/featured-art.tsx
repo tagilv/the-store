@@ -21,7 +21,7 @@ export function FeaturedArt({ items }: FeaturedArtProps) {
             Discover our carefully curated selection of featured artworks
           </p>
         </div>
-        <ItemGrid items={items} featured={true} type="artwork" />
+        <ItemGrid items={items} />
       </div>
     </section>
   );
