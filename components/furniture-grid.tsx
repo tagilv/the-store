@@ -12,6 +12,16 @@ export async function FurnitureGrid() {
     );
   }
 
+  if (!furnitureItems || furnitureItems.length === 0) {
+    return (
+      <div className="text-center py-12">
+        <p className="text-muted-foreground">
+          No furniture pieces available in this collection
+        </p>
+      </div>
+    );
+  }
+
   return <ItemGrid items={furnitureItems} basePath="furniture" />;
 }
 

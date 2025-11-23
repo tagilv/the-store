@@ -12,6 +12,16 @@ export async function FeaturedGrid() {
     );
   }
 
+  if (!featuredItems || featuredItems.length === 0) {
+    return (
+      <div className="text-center py-12">
+        <p className="text-muted-foreground">
+          No featured art available at this time
+        </p>
+      </div>
+    );
+  }
+
   return <ItemGrid items={featuredItems} basePath="featured" />;
 }
 

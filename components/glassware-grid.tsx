@@ -12,6 +12,16 @@ export async function GlasswareGrid() {
     );
   }
 
+  if (!glasswareItems || glasswareItems.length === 0) {
+    return (
+      <div className="text-center py-12">
+        <p className="text-muted-foreground">
+          No glassware items available in this collection
+        </p>
+      </div>
+    );
+  }
+
   return <ItemGrid items={glasswareItems} basePath="glassware" />;
 }
 
