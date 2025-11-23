@@ -18,19 +18,13 @@ export function Footer() {
             <h3 className="font-sans text-lg font-medium mb-4">Quick Links</h3>
             <div className="space-y-2">
               <Link
-                href="#gallery"
-                className="block text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Gallery
-              </Link>
-              <Link
-                href="#about"
+                href="/about"
                 className="block text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
                 About
               </Link>
               <Link
-                href="#contact"
+                href="/contact"
                 className="block text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
                 Contact
