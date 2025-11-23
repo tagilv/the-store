@@ -31,7 +31,7 @@ export default async function GlasswarePage() {
               master artisans
             </p>
           </div>
-          <ItemGrid items={glasswareItems} />
+          <ItemGrid items={glasswareItems} basePath="glassware" />
         </div>
       </section>
     </main>

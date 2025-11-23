@@ -31,7 +31,7 @@ export default async function FurniturePage() {
               furniture pieces
             </p>
           </div>
-          <ItemGrid items={furnitureItems} />
+          <ItemGrid items={furnitureItems} basePath="furniture" />
         </div>
       </section>
     </main>
