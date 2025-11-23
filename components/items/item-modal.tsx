@@ -16,16 +16,14 @@ export function ItemModal({ item, basePath }: ItemModalProps) {
   const router = useRouter();
   const pathname = usePathname();
 
-  const shouldShowModal = pathname !== `/${basePath}`;
+  // For featured items, modal shows when on /featured/[id], not on home page (/)
+  // For other collections, modal shows when not on the collection page
+  const shouldShowModal = basePath === "featured" 
+    ? pathname.startsWith("/featured/") && pathname !== "/featured"
+    : pathname !== `/${basePath}`;
 
   const handleClose = () => {
-    // For featured items, navigate to home page since they're displayed there
-    // For other collections, navigate to their collection page
-    if (basePath === "featured") {
-      router.push("/");
-    } else {
-      router.push(`/${basePath}`);
-    }
+    router.back();
   };
 
   useEffect(() => {
@@ -33,7 +31,6 @@ export function ItemModal({ item, basePath }: ItemModalProps) {
       return;
     }
 
-    // Restore scroll position when modal opens
     const savedScroll = sessionStorage.getItem("scrollPosition");
     if (savedScroll) {
       requestAnimationFrame(() => {
