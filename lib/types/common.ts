@@ -2,7 +2,7 @@ export interface Item {
   id: string;
   title: string;
   handle: string;
-  category: "art" | "glassware" | "furniture";
+  category: "art" | "glassware" | "furniture" | "featured";
   medium: string;
   year: string;
   dimensions: string;

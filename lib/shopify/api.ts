@@ -11,7 +11,7 @@ export async function getFeaturedArt(): Promise<{
   const { data, errors } = await client.request<CollectionResponse>(
     getCollection,
     {
-      variables: { handle: "art-collection" },
+      variables: { handle: "featured-art" },
     }
   );
 
@@ -22,7 +22,7 @@ export async function getFeaturedArt(): Promise<{
 
   const items =
     data?.collection?.products?.edges?.map((edge) =>
-      convertShopifyProductToItem(edge.node)
+      convertShopifyProductToItem(edge.node, "featured-art")
     ) || [];
 
   return { data: items, error: null };
@@ -46,7 +46,7 @@ export async function getArtCollection(): Promise<{
 
   const items =
     data?.collection?.products?.edges?.map((edge) =>
-      convertShopifyProductToItem(edge.node)
+      convertShopifyProductToItem(edge.node, "art-collection")
     ) || [];
 
   return { data: items, error: null };
@@ -70,7 +70,7 @@ export async function getGlasswareCollection(): Promise<{
 
   const items =
     data?.collection?.products?.edges?.map((edge) =>
-      convertShopifyProductToItem(edge.node)
+      convertShopifyProductToItem(edge.node, "glassware-collection")
     ) || [];
 
   return { data: items, error: null };
@@ -94,7 +94,7 @@ export async function getFurnitureCollection(): Promise<{
 
   const items =
     data?.collection?.products?.edges?.map((edge) =>
-      convertShopifyProductToItem(edge.node)
+      convertShopifyProductToItem(edge.node, "furniture-collection")
     ) || [];
 
   return { data: items, error: null };

@@ -1,14 +1,12 @@
 import { Item } from "../types/common";
 import { ShopifyProduct } from "./types";
 
-export function convertShopifyProductToItem(product: ShopifyProduct): Item {
+export function convertShopifyProductToItem(product: ShopifyProduct, collectionHandle: string): Item {
   return {
     id: product.id,
     title: product.title,
     handle: product.handle,
-    category: mapCollectionToCategory(
-      product.collections.edges[0]?.node?.handle
-    ),
+    category: mapCollectionToCategory(collectionHandle),
     medium:
       product.tags.find((tag: string) =>
         [
@@ -35,13 +33,16 @@ export function convertShopifyProductToItem(product: ShopifyProduct): Item {
 // Determine category from collections
 function mapCollectionToCategory(
   collectionHandle?: string
-): "art" | "glassware" | "furniture" {
+): "art" | "glassware" | "furniture" | "featured" {
   switch (collectionHandle) {
-    case "art":
+    case "art-collection":
       return "art";
-    case "glassware":
+    case "featured-art":
+    case "featured-art-collection":
+      return "featured";
+    case "glassware-collection":
       return "glassware";
-    case "furniture":
+    case "furniture-collection":
       return "furniture";
     default:
       return "art";
