@@ -4,33 +4,53 @@ import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useEffect } from "react";
+import { useRouter, usePathname } from "next/navigation";
 import { Item } from "@/lib/types/common";
+
 interface ItemModalProps {
   item: Item;
-  onClose: () => void;
+  onClose?: () => void; 
+  basePath?: string;
 }
 
-export function ItemModal({ item, onClose }: ItemModalProps) {
+export function ItemModal({ item, onClose, basePath }: ItemModalProps) {
+  const router = useRouter();
+  const pathname = usePathname();
+
+
+  const shouldShowModal = !(basePath && pathname === `/${basePath}`);
+
   const handleClose = () => {
-    onClose();
+    if (basePath) {
+ 
+      router.push(`/${basePath}`);
+    } else if (onClose) {
+
+      onClose();
+    }
   };
 
   useEffect(() => {
+ 
+    if (!shouldShowModal) {
+      document.body.style.overflow = "unset";
+      return;
+    }
+
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        onClose();
+        handleClose();
       }
     };
 
     document.addEventListener("keydown", handleEscape);
-
-    document.body.style.overflow = "hidden"; // ← Prevents scrolling
+    document.body.style.overflow = "hidden";
 
     return () => {
       document.removeEventListener("keydown", handleEscape);
-      document.body.style.overflow = "unset"; // ← Restores scrolling
+      document.body.style.overflow = "unset";
     };
-  }, [onClose]);
+  }, [basePath, onClose, handleClose, shouldShowModal]);
 
   const handleBackdropClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
@@ -41,6 +61,11 @@ export function ItemModal({ item, onClose }: ItemModalProps) {
   const handleContentClick = (e: React.MouseEvent) => {
     e.stopPropagation();
   };
+
+
+  if (!shouldShowModal) {
+    return null;
+  }
 
   return (
     <div
@@ -58,11 +83,12 @@ export function ItemModal({ item, onClose }: ItemModalProps) {
           variant="ghost"
           size="icon"
           className="absolute top-4 right-4 z-10 bg-background/80 backdrop-blur-sm"
-          onClick={onClose}
+          onClick={handleClose}
           aria-label="Close modal"
         >
           <X className="h-5 w-5" />
         </Button>
+
 
         <div className="grid md:grid-cols-2 gap-8 p-4 md:p-8">
           <div className="relative w-full aspect-[3/4] bg-muted rounded-sm overflow-hidden">
@@ -72,7 +98,7 @@ export function ItemModal({ item, onClose }: ItemModalProps) {
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover"
-              priority // Priority loading since modal content is immediately visible
+              priority
             />
           </div>
 

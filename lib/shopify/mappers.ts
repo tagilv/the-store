@@ -5,6 +5,7 @@ export function convertShopifyProductToItem(product: ShopifyProduct): Item {
   return {
     id: product.id,
     title: product.title,
+    handle: product.handle,
     category: mapCollectionToCategory(
       product.collections.edges[0]?.node?.handle
     ),
