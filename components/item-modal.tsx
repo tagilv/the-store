@@ -9,30 +9,22 @@ import { Item } from "@/lib/types/common";
 
 interface ItemModalProps {
   item: Item;
-  onClose?: () => void; 
-  basePath?: string;
+  basePath: string;
 }
 
-export function ItemModal({ item, onClose, basePath }: ItemModalProps) {
+export function ItemModal({ item, basePath }: ItemModalProps) {
   const router = useRouter();
   const pathname = usePathname();
 
-  const shouldShowModal = basePath 
-    ? pathname !== `/${basePath}`
-    : pathname !== "/";
+  const shouldShowModal = pathname !== `/${basePath}`;
 
   const handleClose = () => {
-    if (basePath) {
-      // For featured items, navigate to home page since they're displayed there
-      // For other collections, navigate to their collection page
-      if (basePath === "featured") {
-        router.push("/");
-      } else {
-        router.push(`/${basePath}`);
-      }
-    } else if (onClose) {
-      // Fallback to callback for non-parallel-route collections
-      onClose();
+    // For featured items, navigate to home page since they're displayed there
+    // For other collections, navigate to their collection page
+    if (basePath === "featured") {
+      router.push("/");
+    } else {
+      router.push(`/${basePath}`);
     }
   };
 
@@ -56,7 +48,7 @@ export function ItemModal({ item, onClose, basePath }: ItemModalProps) {
       document.removeEventListener("keydown", handleEscape);
       document.body.style.overflow = "unset";
     };
-  }, [basePath, onClose, handleClose, shouldShowModal]);
+  }, [handleClose, shouldShowModal]);
 
   const handleBackdropClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {

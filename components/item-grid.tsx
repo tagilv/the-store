@@ -3,7 +3,7 @@ import { ItemGridClient } from "./item-grid-client";
 
 interface ItemGridProps {
   items: Item[] | null;
-  basePath?: string;
+  basePath: string;
 }
 
 export function ItemGrid({ items, basePath }: ItemGridProps) {
