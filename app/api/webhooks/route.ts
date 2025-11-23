@@ -2,24 +2,43 @@ import { NextRequest, NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
 import { ShopifyCollection } from "@/lib/shopify/types";
+import crypto from "crypto";
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
-  const topic = (await headers()).get("x-shopify-topic") || "unknown";
+  const rawBody = await req.text();
+
+  const headersList = await headers();
+  const hmac = headersList.get("x-shopify-hmac-sha256");
+  const topic = headersList.get("x-shopify-topic") || "unknown";
+
+  if (!hmac || !process.env.SHOPIFY_WEBHOOK_SECRET) {
+    return NextResponse.json(
+      { error: "Missing signature or secret" },
+      { status: 401 }
+    );
+  }
+
+  const hash = crypto
+    .createHmac("sha256", process.env.SHOPIFY_WEBHOOK_SECRET)
+    .update(rawBody, "utf8")
+    .digest("base64");
+
+  if (hash !== hmac) {
+    return NextResponse.json(
+      { error: "Invalid signature" },
+      { status: 401 }
+    );
+  }
+
+  const body = JSON.parse(rawBody);
+  const product = body.product;
+  const collections = product?.collections || [];
 
   const productWebhooks = ["products/create", "products/update"];
-
   const isProductUpdate = productWebhooks.includes(topic);
 
   if (isProductUpdate) {
-    // Always revalidate home page
     revalidatePath("/");
-
-    // Get product data from request body to check collections
-    const body = await req.json();
-    const product = body.product;
-    const collections = product?.collections || [];
-
-    // Revalidate specific collection pages based on product's collections
     collections.forEach((collection: ShopifyCollection) => {
       switch (collection.handle) {
         case "art-collection":
