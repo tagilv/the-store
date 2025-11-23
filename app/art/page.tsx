@@ -1,6 +1,7 @@
-import { ItemGrid } from "@/components/item-grid";
+import { Suspense } from "react";
+import { ArtGrid } from "@/components/art-grid";
+import { ItemGridSkeleton } from "@/components/ItemGridSkeleton";
 import { Metadata } from "next";
-import { getArtCollection } from "@/lib/shopify/api";
 
 export const metadata: Metadata = {
   title: "Art Collection | De Boerderij",
@@ -11,13 +12,7 @@ export const metadata: Metadata = {
 // revalidate every 1 hours
 export const revalidate = 3600;
 
-export default async function ArtPage() {
-  const { data: artItems, error } = await getArtCollection();
-
-  if (error) {
-    return <div>Error loading art collection</div>;
-  }
-
+export default function ArtPage() {
   return (
     <main className="min-h-screen flex flex-col">
       <section className="px-6 py-16 lg:px-8">
@@ -31,7 +26,9 @@ export default async function ArtPage() {
               mixed media works
             </p>
           </div>
-          <ItemGrid items={artItems} basePath="art" />
+          <Suspense fallback={<ItemGridSkeleton />}>
+            <ArtGrid />
+          </Suspense>
         </div>
       </section>
     </main>

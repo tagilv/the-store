@@ -1,6 +1,7 @@
-import { ItemGrid } from "@/components/item-grid";
+import { Suspense } from "react";
+import { GlasswareGrid } from "@/components/glassware-grid";
+import { ItemGridSkeleton } from "@/components/ItemGridSkeleton";
 import { Metadata } from "next";
-import { getGlasswareCollection } from "@/lib/shopify/api";
 
 export const metadata: Metadata = {
   title: "Glassware Collection | De Boerderij",
@@ -11,13 +12,7 @@ export const metadata: Metadata = {
 // revalidate every 30 min
 export const revalidate = 1800;
 
-export default async function GlasswarePage() {
-  const { data: glasswareItems, error } = await getGlasswareCollection();
-
-  if (error) {
-    return <div>Error loading glassware collection</div>;
-  }
-
+export default function GlasswarePage() {
   return (
     <main className="min-h-screen flex flex-col">
       <section className="px-6 py-16 lg:px-8">
@@ -31,7 +26,9 @@ export default async function GlasswarePage() {
               master artisans
             </p>
           </div>
-          <ItemGrid items={glasswareItems} basePath="glassware" />
+          <Suspense fallback={<ItemGridSkeleton />}>
+            <GlasswareGrid />
+          </Suspense>
         </div>
       </section>
     </main>

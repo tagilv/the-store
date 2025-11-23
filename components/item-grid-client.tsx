@@ -10,6 +10,11 @@ interface ItemGridClientProps {
 }
 
 export function ItemGridClient({ items, basePath }: ItemGridClientProps) {
+  const handleClick = () => {
+    // Save scroll position before navigation
+    sessionStorage.setItem("scrollPosition", window.scrollY.toString());
+  };
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {items.map((item, index) => (
@@ -21,6 +26,8 @@ export function ItemGridClient({ items, basePath }: ItemGridClientProps) {
             href={`/${basePath}/${item.handle}`}
             className="absolute inset-0 w-full h-full cursor-pointer"
             aria-label={`View details for ${item.title}`}
+            scroll={false}
+            onClick={handleClick}
           >
             <div className="relative w-full h-full">
               <Image

@@ -1,15 +1,8 @@
-import { Item } from "@/lib/types/common";
-import { ItemGrid } from "./item-grid";
+import { Suspense } from "react";
+import { FeaturedGrid } from "./featured-grid";
+import { ItemGridSkeleton } from "./ItemGridSkeleton";
 
-interface FeaturedArtProps {
-  items: Item[] | null;
-}
-
-export function FeaturedArt({ items }: FeaturedArtProps) {
-  if (!items || items.length === 0) {
-    return null;
-  }
-
+export function FeaturedArt() {
   return (
     <section className="px-6 py-16 lg:px-8">
       <div className="mx-auto max-w-7xl">
@@ -21,7 +14,9 @@ export function FeaturedArt({ items }: FeaturedArtProps) {
             Discover our carefully curated selection of featured artworks
           </p>
         </div>
-        <ItemGrid items={items} basePath="featured" />
+        <Suspense fallback={<ItemGridSkeleton />}>
+          <FeaturedGrid />
+        </Suspense>
       </div>
     </section>
   );

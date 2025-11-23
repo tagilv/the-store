@@ -1,6 +1,7 @@
-import { ItemGrid } from "@/components/item-grid";
+import { Suspense } from "react";
+import { FurnitureGrid } from "@/components/furniture-grid";
+import { ItemGridSkeleton } from "@/components/ItemGridSkeleton";
 import { Metadata } from "next";
-import { getFurnitureCollection } from "@/lib/shopify/api";
 
 export const metadata: Metadata = {
   title: "Furniture Collection | De Boerderij",
@@ -11,13 +12,7 @@ export const metadata: Metadata = {
 // revalidate every 1 hour
 export const revalidate = 3600;
 
-export default async function FurniturePage() {
-  const { data: furnitureItems, error } = await getFurnitureCollection();
-
-  if (error) {
-    return <div>Error loading furniture collection</div>;
-  }
-
+export default function FurniturePage() {
   return (
     <main className="min-h-screen flex flex-col">
       <section className="px-6 py-16 lg:px-8">
@@ -31,7 +26,9 @@ export default async function FurniturePage() {
               furniture pieces
             </p>
           </div>
-          <ItemGrid items={furnitureItems} basePath="furniture" />
+          <Suspense fallback={<ItemGridSkeleton />}>
+            <FurnitureGrid />
+          </Suspense>
         </div>
       </section>
     </main>

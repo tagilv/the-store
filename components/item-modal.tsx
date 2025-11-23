@@ -29,10 +29,17 @@ export function ItemModal({ item, basePath }: ItemModalProps) {
   };
 
   useEffect(() => {
- 
     if (!shouldShowModal) {
-      document.body.style.overflow = "unset";
       return;
+    }
+
+    // Restore scroll position when modal opens
+    const savedScroll = sessionStorage.getItem("scrollPosition");
+    if (savedScroll) {
+      requestAnimationFrame(() => {
+        window.scrollTo(0, parseInt(savedScroll, 10));
+        sessionStorage.removeItem("scrollPosition");
+      });
     }
 
     const handleEscape = (e: KeyboardEvent) => {
@@ -42,11 +49,9 @@ export function ItemModal({ item, basePath }: ItemModalProps) {
     };
 
     document.addEventListener("keydown", handleEscape);
-    document.body.style.overflow = "hidden";
 
     return () => {
       document.removeEventListener("keydown", handleEscape);
-      document.body.style.overflow = "unset";
     };
   }, [handleClose, shouldShowModal]);
 
