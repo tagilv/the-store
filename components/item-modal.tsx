@@ -17,15 +17,21 @@ export function ItemModal({ item, onClose, basePath }: ItemModalProps) {
   const router = useRouter();
   const pathname = usePathname();
 
-
-  const shouldShowModal = !(basePath && pathname === `/${basePath}`);
+  const shouldShowModal = basePath 
+    ? pathname !== `/${basePath}`
+    : pathname !== "/";
 
   const handleClose = () => {
     if (basePath) {
- 
-      router.push(`/${basePath}`);
+      // For featured items, navigate to home page since they're displayed there
+      // For other collections, navigate to their collection page
+      if (basePath === "featured") {
+        router.push("/");
+      } else {
+        router.push(`/${basePath}`);
+      }
     } else if (onClose) {
-
+      // Fallback to callback for non-parallel-route collections
       onClose();
     }
   };
