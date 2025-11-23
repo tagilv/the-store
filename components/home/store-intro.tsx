@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 export function StoreIntro() {
   return (
     <section className="px-6 py-20 md:py-32 lg:px-8">

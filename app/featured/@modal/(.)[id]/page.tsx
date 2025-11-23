@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { getFeaturedArt } from "@/lib/shopify/api";
-import { ItemModal } from "@/components/item-modal";
+import { ItemModal } from "@/components/items/item-modal";
 
 interface PageProps {
   params: Promise<{ id: string }>;

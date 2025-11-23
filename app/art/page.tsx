@@ -1,6 +1,6 @@
 import { Suspense } from "react";
-import { ArtGrid } from "@/components/art-grid";
-import { ItemGridSkeleton } from "@/components/ItemGridSkeleton";
+import { ArtGrid } from "@/components/items/art-grid";
+import { ItemGridSkeleton } from "@/components/items/ItemGridSkeleton";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

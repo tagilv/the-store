@@ -1,5 +1,5 @@
-import { FeaturedArt } from "@/components/featured-art";
-import { StoreIntro } from "@/components/store-intro";
+import { FeaturedArt } from "@/components/home/featured-art";
+import { StoreIntro } from "@/components/home/store-intro";
 
 export const revalidate = 43200;
 

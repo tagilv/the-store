@@ -1,6 +1,6 @@
 import { Suspense } from "react";
-import { FeaturedGrid } from "./featured-grid";
-import { ItemGridSkeleton } from "./ItemGridSkeleton";
+import { FeaturedGrid } from "@/components/items/featured-grid";
+import { ItemGridSkeleton } from "@/components/items/ItemGridSkeleton";
 
 export function FeaturedArt() {
   return (
