@@ -15,7 +15,7 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-start">
             <div>
               <h1 className="font-sans text-4xl md:text-5xl lg:text-6xl font-light tracking-tight mb-6 text-balance">
-                Our Story
+                About us
               </h1>
               <div className="space-y-4 text-muted-foreground leading-relaxed text-lg text-pretty">
                 <p>
