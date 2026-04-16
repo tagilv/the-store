@@ -16,7 +16,7 @@ export function StoreIntro() {
           </p>
           <div className="flex flex-wrap gap-4">
             <Button asChild variant="outline" size="lg">
-              <Link href="/about">About us</Link>
+              <Link href="/about">About</Link>
             </Button>
           </div>
         </div>
